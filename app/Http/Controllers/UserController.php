@@ -4,10 +4,12 @@ namespace App\Http\Controllers;
 
 use App\User;
 use Illuminate\Http\Request;
+// use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 
 class UserController extends Controller
 {
+    // use RegistersUsers;
     function show(Request $request)
     {
 
@@ -27,12 +29,12 @@ class UserController extends Controller
         } elseif ($url == "non_active") {
             $act = [
                 'softdelete' => "Xóa tạm thời",
-                'destroy' => "Xóa vĩnh viễn",
+                
             ];
             $users = User::whereNull('email_verified_at')->paginate(20);
         } else {
             $act = [
-                'softdelete' => "Xóa tạm thời",
+                'softdelete' => "Xóa tạm thời"
             ];
 
             if ($request->input('keyword')) {

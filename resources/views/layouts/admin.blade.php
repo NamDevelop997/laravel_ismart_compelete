@@ -46,7 +46,7 @@
 
                     <div class="dropdown-menu dropdown-menu-right">
                         <a class="dropdown-item " data-toggle="modal" data-target="#profile" href="#">Tài khoản</a>
-                        <a class="dropdown-item " href="{{ url('home') }}">Xem trang web</a>
+                        <a class="dropdown-item " href="{{ url('/') }}">Xem trang web</a>
                         <a class="dropdown-item " href="{{ route('logout') }}" onclick="event.preventDefault();
                                                          document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}
@@ -132,14 +132,14 @@
                             <li><a href="{{ url('/dashboard/post/list') }}">Danh sách</a></li>
                         </ul>
                     </li>
-                    <li class="nav-link active">
+                    <li class="nav-link">
                         <a href="{{ url('/dashboard/product/list') }}">
                             <div class="nav-link-icon d-inline-flex">
-                                <i class="fa fa-shopping-cart"></i>
+                                <i class="fa fa-shopping-cart text-primary"></i>
                             </div>
                             Sản phẩm
                         </a>
-                        <i class="arrow fas fa-angle-down"></i>
+                        <i class="arrow fas fa-angle-right"></i>
                         <ul class="sub-menu">
                             <li><a href="{{ url('/dashboard/product/add') }}">Thêm mới</a></li>
                             <li><a href="{{ url('/dashboard/product/list') }}">Danh sách</a></li>
@@ -165,8 +165,7 @@
                 </ul>
             </div>
             <div id="wp-content">
-                @yield('content')
-                
+                @yield('content')      
             </div>
         </div>
 

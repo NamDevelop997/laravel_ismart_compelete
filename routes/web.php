@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 Auth::routes(['verify' => true]);
 
 // bắt buộc người dùng phải xác nhận email khi đăng kí thì mới vào được trang home
-Route::get('/', 'HomeController@index')->name('home');// ->middleware(['verified']);
+Route::get('/', 'HomeController@index')->name('home')->middleware(['verified']);
 
 Route::get('/product', 'ProductController@index')->name('product');
 Route::get('/post', 'PostController@index')->name('post');

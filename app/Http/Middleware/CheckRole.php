@@ -30,7 +30,7 @@ class CheckRole
                 //     return redirect('admin_post');
                 //     break;
                 default:
-                    return redirect('home');
+                    return redirect('/');
             }
         }
     }

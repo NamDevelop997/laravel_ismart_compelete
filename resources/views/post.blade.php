@@ -1,4 +1,5 @@
 @extends('root_file')
+@section('title', 'Post')
 
 @section('content')
     <section class="products-page ">

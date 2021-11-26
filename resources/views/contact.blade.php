@@ -1,4 +1,7 @@
 @extends('root_file')
+@section('title', 'CONTACT')
+{{-- @endsection --}}
+
 @section('content')
    
 @endsection

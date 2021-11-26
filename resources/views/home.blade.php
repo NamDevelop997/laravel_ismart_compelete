@@ -13,6 +13,10 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
         integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
 
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css"
+        integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+
+
     {{-- font awesome cdn --}}
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta2/css/all.min.css"
         integrity="sha512-YWzhKL2whUzgiheMoBFwW8CKV4qpHQAEuvilg9FAn5VJUDwKZZxkJNuGM4XkWuk94WCrrwslk8yWNGmY1EduTA=="
@@ -41,15 +45,46 @@
                     <li><a href="{{ url('/product') }}">sản phẩm</a></li>
                     <li><a href="{{ url('/post') }}">bài viết</a></li>
                     <li><a href="{{ url('/contact') }}">liên hệ</a></li>
-                    <li><a href="123">giỏ hàng</a></li>
+                    <li><a href="" class="text-danger"><i class="fa fa-cart-plus text-success"></i>(1)</a></li>
                 </ul>
             </nav>
-            <div class="login_logout">
-                <ul class="d-flex">
-                    <li><a href="">Đăng nhập </a></li>
-                    <li><a href="">đăng xuất</a></li>
-                </ul>
-            </div>
+            @php
+                $check_login = Auth::check();
+                // dd($check_login);
+            @endphp
+            @if ($check_login)
+                <div class="dropdown">
+                    <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton"
+                        data-toggle="dropdown" aria-expanded="false">
+                        {{ Auth::user()->name }}
+                        @php
+                            $admin = Auth::user()->role_id == 1;
+                            echo $admin ? '(Admin)' : '';
+                        @endphp
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-right">
+                        @if ($admin)
+                            <a class="dropdown-item " href="{{ url('/dashboard') }}">Dashboard</a>
+                        @endif
+                        {{-- <a class="dropdown-item " href="{{ url('/dashboard') }}">Dashboard</a> --}}
+                        <a class="dropdown-item " href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                     document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+                    </div>
+                </div>
+            @else
+                <div class="login_logout">
+                    <ul class="d-flex">
+                        <li><a href="">Đăng nhập </a></li>
+                        <li><a href="">đăng kí</a></li>
+                    </ul>
+                </div>
+            @endif
         </header>
         {{-- end header --}}
 
@@ -294,6 +329,13 @@
     </script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
         integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous">
+    </script>
+
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.5.1/dist/jquery.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous">
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-fQybjgWLrvvRgtW6bFlB7jaZrFsaBXjsOMm/tB9LTS58ONXgqbR9W8oWht/amnpF" crossorigin="anonymous">
     </script>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
